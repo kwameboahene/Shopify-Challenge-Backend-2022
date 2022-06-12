@@ -1,0 +1,84 @@
+<head>
+  <style>
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: #333;
+    }
+    li {
+      float: left;
+    }
+
+    li a {
+      display: block;
+      color: white;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <script>
+    function onDelete(value) {
+      products = decodeURIComponent(document.cookie);
+      products = products.split(";")[0];
+      products = products.split("=")[1];
+      products = JSON.parse(products);
+      var inv = [];
+      products.forEach((element) => {
+        inv.push(element.location);
+      });
+
+      if (inv.includes(value.dataset.value)) {
+        return alert("cannot delete location in inventory");
+      } else {
+        if (confirm("Are you sure")) {
+          window.location.href = "/deleteLocation?id=" + value.id;
+        }
+      }
+    }
+  </script>
+  <ul>
+    <li><a class="active" href="/Inventory">Inventory</a></li>
+    <li><a href="/Product">Products</a></li>
+    <li><a href="/location">Locations</a></li>
+  </ul>
+
+  <head>
+    <style>
+      table,
+      td {
+        border: 1px solid black;
+      }
+    </style>
+  </head>
+  <h1>Location Data</h1>
+
+  <button><a href="/addLocation">ADD LOCATION</a></button>
+  <table>
+    <tr>
+      <td>ID</td>
+      <td>Location Name</td>
+      <td></td>
+    </tr>
+    <% loc.forEach( function(item) { %>
+    <tr>
+      <td><%= item.location_id %></td>
+      <td><%= item.location_name%></td>
+      <td>
+        <a href="/editLocation?id=<%= item.location_id %>">Edit</a>
+        <a
+          href="#"
+          id="<%= item.location_id %>"
+          data-value="<%= item.location_name %>"
+          onClick="return onDelete(this)"
+          >Delete</a
+        >
+      </td>
+    </tr>
+    <% }); %>
+  </table>
+</body>

@@ -1,0 +1,68 @@
+<head>
+  <style>
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: #333;
+    }
+    li {
+      float: left;
+    }
+
+    li a {
+      display: block;
+      color: white;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <ul>
+    <li><a class="active" href="/Inventory">Inventory</a></li>
+    <li><a href="/Product">Products</a></li>
+    <li><a href="/location">Locations</a></li>
+  </ul>
+
+  <head>
+    <style>
+      table,
+      td {
+        border: 1px solid black;
+      }
+    </style>
+  </head>
+  <h1>Inventory Data</h1>
+
+  <button><a href="/addInventory">ADD INVENTORY</a></button>
+  <table>
+    <tr>
+      <td>ID</td>
+      <td>Product Name</td>
+      <td>Quantity</td>
+      <td>Date</td>
+      <td>Location</td>
+      <td></td>
+    </tr>
+    <% invent.forEach( function(item) { %>
+    <tr>
+      <td><%= item.inventory_id %></td>
+      <td><%= item.product %></td>
+      <td><%= item.quantity %></td>
+      <td><%= item.date %></td>
+      <td><%= item.location %></td>
+      <td>
+        <a href="/editInventory?id=<%= item.inventory_id%>">Edit</a>
+        <a
+          href="/deleteInventory?id=<%= item.inventory_id%>"
+          onClick="return confirm('Are you sure?')"
+          >Delete</a
+        >
+      </td>
+    </tr>
+    <% }); %>
+  </table>
+</body>

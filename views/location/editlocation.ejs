@@ -1,0 +1,71 @@
+<head>
+  <style>
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: #333;
+    }
+    li {
+      float: left;
+    }
+
+    li a {
+      display: block;
+      color: white;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <ul>
+    <li><a class="active" href="/Inventory">Inventory</a></li>
+    <li><a href="/Product">Products</a></li>
+    <li><a href="/location">Locations</a></li>
+  </ul>
+
+  <h1>Edit Location</h1>
+
+  <script>
+    function validate() {
+      var name = document.myform.location.value;
+      if (name == null || name == "" || name.length < 2) {
+        alert(
+          "location name cannot be empty and must be at least 2 characters long"
+        );
+        return false;
+      }
+    }
+  </script>
+
+  <form
+    action="/editLocation"
+    name="myform"
+    method="post"
+    onsubmit="return validate()"
+  >
+    <div>
+      <input
+        name="id"
+        type="hidden"
+        id="id"
+        value="<%= loc[0].location_id %>"
+      />
+    </div>
+    <div>
+      <label>Location Name:</label>
+      <input
+        name="location"
+        type="text"
+        minlength="1"
+        maxlength="254"
+        value="<%= loc[0].location_name %>"
+      />
+    </div>
+
+    <button type="submit">Save</button>
+  </form>
+</body>
