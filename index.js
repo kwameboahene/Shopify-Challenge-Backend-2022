@@ -7,7 +7,8 @@ const Update = require("./middleware/edit");
 const bodyParser = require("body-parser");
 const moment = require("moment");
 const cookieParser = require("cookie-parser");
-
+require("dotenv").config();
+console.log(process.env);
 app.use(function (req, res, next) {
   console.log("Time:", Date.now());
   next();
