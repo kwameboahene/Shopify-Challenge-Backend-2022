@@ -148,7 +148,7 @@ app.get("/editProduct", async (req, res) => {
   if (product.error) {
     console.log(product.status);
   } else {
-    res.render("./product/editProduct", {
+    res.render("./product/editproduct", {
       prod: product,
     });
   }
@@ -203,7 +203,7 @@ app.get("/editLocation", async (req, res) => {
   if (location.error) {
     console.log(location.status);
   } else {
-    res.render("./location/editLocation", {
+    res.render("./location/editlocation", {
       loc: location,
     });
   }
